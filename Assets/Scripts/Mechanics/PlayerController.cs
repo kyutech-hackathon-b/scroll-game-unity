@@ -129,6 +129,23 @@ namespace Platformer.Mechanics
             targetVelocity = move * maxSpeed;
         }
 
+        public void ChangeColor(string colorCode)
+        {
+            Color color;
+            ColorUtility.TryParseHtmlString(colorCode, out color);
+            spriteRenderer.color = color;
+        }
+
+        public void PlayerDeath()
+        {
+            Invoke("IncrementLife", 0.2f);
+        }
+
+        public void IncrementLife()
+        {
+            health.Increment();
+        }
+
         public enum JumpState
         {
             Grounded,

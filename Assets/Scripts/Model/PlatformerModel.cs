@@ -21,6 +21,12 @@ namespace Platformer.Model
         /// by the user.
         /// </summary>
         public PlayerController player;
+        public TokenController token;
+        public EnemyManager enemies;
+        public EndlessController map1;
+        public EndlessController map2;
+        public CountScore countScore;
+        public ScrollController scroll;
 
         /// <summary>
         /// The spawn point in the scene.

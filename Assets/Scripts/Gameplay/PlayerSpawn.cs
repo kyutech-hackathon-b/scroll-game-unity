@@ -18,13 +18,20 @@ namespace Platformer.Gameplay
             player.controlEnabled = false;
             if (player.audioSource && player.respawnAudio)
                 player.audioSource.PlayOneShot(player.respawnAudio);
-            player.health.Increment();
             player.Teleport(model.spawnPoint.transform.position);
             player.jumpState = PlayerController.JumpState.Grounded;
             player.animator.SetBool("dead", false);
-            model.virtualCamera.m_Follow = player.transform;
-            model.virtualCamera.m_LookAt = player.transform;
+            model.scroll.ReturnStart();
+            model.scroll.scrollSpeed = 0f;
+            model.virtualCamera.m_Follow = model.scroll.transform;
+            model.virtualCamera.m_LookAt = model.scroll.transform;
             Simulation.Schedule<EnablePlayerInput>(2f);
+            model.map1.PlayerDeath();
+            model.map2.PlayerDeath();
+            model.enemies.PlayerDeath();
+            model.token.PlayerDeath();
+            player.PlayerDeath();
         }
+        
     }
 }

@@ -38,6 +38,15 @@ namespace Platformer.Mechanics
             }
         }
 
+        public void PlayerDeath()
+        {
+            for (var i = 0; i < tokens.Length; i++)
+            {   
+                if(tokens[i].collected)
+                    tokens[i].PlayerDeath();
+            }
+        }
+
         void Update()
         {
             //if it's time for the next frame...
@@ -54,7 +63,6 @@ namespace Platformer.Mechanics
                         if (token.collected && token.frame == token.sprites.Length - 1)
                         {
                             token.gameObject.SetActive(false);
-                            tokens[i] = null;
                         }
                         else
                         {

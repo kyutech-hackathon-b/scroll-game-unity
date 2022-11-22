@@ -40,6 +40,13 @@ namespace Platformer.Mechanics
             sprites = idleAnimation;
         }
 
+        public void PlayerDeath()
+        {
+            sprites = idleAnimation;
+            collected = false;
+            this.gameObject.SetActive(true);
+        }
+
         void OnTriggerEnter2D(Collider2D other)
         {
             //only exectue OnPlayerEnter if the player collides with this token.
@@ -57,7 +64,7 @@ namespace Platformer.Mechanics
                 collected = true;
             //send an event into the gameplay system to perform some behaviour.
             var ev = Schedule<PlayerTokenCollision>();
-            countScore.score_num += 200;
+            countScore.score_num += 20;
             ev.token = this;
             ev.player = player;
         }

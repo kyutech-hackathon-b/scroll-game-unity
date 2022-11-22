@@ -2,6 +2,7 @@ using System;
 using Platformer.Gameplay;
 using UnityEngine;
 using static Platformer.Core.Simulation;
+using System.Runtime.InteropServices;
 
 namespace Platformer.Mechanics
 {
@@ -10,6 +11,9 @@ namespace Platformer.Mechanics
     /// </summary>
     public class Health : MonoBehaviour
     {
+         [DllImport("__Internal")]
+        private static extern void Score(int score);
+
         /// <summary>
         /// The maximum hit points for the entity.
         /// </summary>
@@ -51,8 +55,8 @@ namespace Platformer.Mechanics
         public void Die()
         {
             while (currentHP > 0) Decrement();
+            // Score(countScore.score_num);
             countScore.score_num = 0;
-            // reactの関数
         }
 
         void Awake()

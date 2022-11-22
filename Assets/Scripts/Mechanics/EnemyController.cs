@@ -23,12 +23,31 @@ namespace Platformer.Mechanics
 
         public Bounds Bounds => _collider.bounds;
 
+        private Vector2 _initialPosition;
+
+        void Start()
+        {
+            _initialPosition = this.transform.position;
+        }
+
         void Awake()
         {
             control = GetComponent<AnimationController>();
             _collider = GetComponent<Collider2D>();
             _audio = GetComponent<AudioSource>();
             spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+
+        public void PlayerDeath()
+        { 
+            this._collider.enabled = true;
+            this.transform.position = _initialPosition;
+            Invoke("EnableAnimation", 0.02f);
+        }
+
+        void EnableAnimation()
+        {
+            this.control.enabled = true;
         }
 
         void OnCollisionEnter2D(Collision2D collision)
