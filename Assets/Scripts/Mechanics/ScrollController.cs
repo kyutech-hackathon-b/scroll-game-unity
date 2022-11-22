@@ -9,7 +9,7 @@ using Platformer.Core;
 public class ScrollController : MonoBehaviour
 {
     Vector2 _initialPosition;
-    public float scrollSpeed = 0.02f;
+    public float scrollSpeed = 0.017f;
     readonly PlatformerModel model = Simulation.GetModel<PlatformerModel>();
     // Start is called before the first frame update
     void Start()
@@ -32,7 +32,7 @@ public class ScrollController : MonoBehaviour
     }
 
     void Restart(){
-        scrollSpeed = 0.02f;
+        scrollSpeed = 0.017f;
     }
 
     public void ReturnStart()
